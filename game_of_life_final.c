@@ -2,9 +2,12 @@
 #include <stdio.h>
 #include<math.h>
 #include<stdlib.h>
+//Declare Global Variables
 int DIES=0;
 int N=4;
 int ALIVE=1;
+
+//compute Function
 void compute(int *life, int *temp, int M, int N) {
   int i, j, value;
   for (i = 1; i < M+1; i++) {
