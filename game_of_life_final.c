@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     /****************************/
     TEMP1 = malloc(recvcount*sizeof(int));
     TEMP2 = malloc(recvcount*sizeof(int));
-    source=1;
+    source=0;
     MPI_Scatter(life,n,MPI_INT,TEMP1,recvcount,MPI_INT,source,MPI_COMM_WORLD);
 
     /*PROCESSING WITH RECVD BLOCKS*/
