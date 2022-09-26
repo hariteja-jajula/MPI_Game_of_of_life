@@ -45,13 +45,13 @@ int main(int argc, char *argv[])
     double t1, t2;
     N = atoi(argv[1]);
     NTIMES = atoi(argv[2]);
-   int n = (N+2)*(N+2);
-    recvcount=n/(numtasks);
+
     /**** START MPI PROCESS ****/
     MPI_Init(&argc,&argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
-
+    int n = (N+2)*(N+2);
+    recvcount=n/(numtasks);
 
  
     int block_size=sqrt(recvcount);
