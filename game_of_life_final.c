@@ -52,8 +52,7 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
 
-    life = malloc(n*sizeof(int));
-    GATHER = malloc(n*sizeof(int));
+
  
     int block_size=sqrt(recvcount);
     MPI_Request reqs[N];   // required variable for non-blocking calls
@@ -62,6 +61,8 @@ int main(int argc, char *argv[])
     
     /** INITITALIZE THE ARRAY **/
   if(rank==0){
+    life = malloc(n*sizeof(int));
+    GATHER = malloc(n*sizeof(int));
     for (i = 0; i < N+2; i++) {
     life[i*(N+2)] = life[i*(N+2) + (N+1)] = DIES ;
     GATHER[i*(N+2)] = GATHER[i*(N+2) + (N+1)] = DIES ;
