@@ -4,7 +4,6 @@
 #include<stdlib.h>
 //Declare Global Variables
 int DIES=0;
-int N=4;
 int ALIVE=1;
 
 //compute Function
@@ -41,10 +40,11 @@ void compute(int *life, int *temp, int M, int N) {
 int main(int argc, char *argv[])  
 {
     int numtasks, rank, sendcount, recvcount, source;
-    int NTIMES, *life=NULL, *TEMP1=NULL,*GATHER=NULL,*TEMP2=NULL;
+    int N,NTIMES, *life=NULL, *TEMP1=NULL,*GATHER=NULL,*TEMP2=NULL;
     int i, j, k;
     double t1, t2;
-     
+    N = atoi(argv[1]);
+    NTIMES = atoi(argv[2]);
    int n = (N+2)*(N+2);
     recvcount=n/(numtasks);
     /**** START MPI PROCESS ****/
