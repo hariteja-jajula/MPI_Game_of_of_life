@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
 
  
     int block_size=sqrt(recvcount);
-    MPI_Request reqs[rank];   // required variable for non-blocking calls
-    MPI_Status stats[rank];   // required variable for Waitall routine
+    MPI_Request reqs[numtasks+1];   // required variable for non-blocking calls
+    MPI_Status stats[numtasks+1];   // required variable for Waitall routine
 
     
     /** INITITALIZE THE ARRAY **/
