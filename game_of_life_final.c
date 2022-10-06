@@ -104,14 +104,19 @@ int main(int argc, char *argv[])
     {
       next=MPI_PROC_NULL;
     }
+   
     MPI_Irecv(&TEMP1, N+2, MPI_INT, prev, top_block, MPI_COMM_WORLD, &reqs[0]);
-    MPI_Irecv(&TEMP1, N+2, MPI_INT, next, bottom_block, MPI_COMM_WORLD, &reqs[1]);
+    MPI_Irecv(&TEMP1[recvcount*(N+2)], N+2, MPI_INT, next, bottom_block, MPI_COMM_WORLD, &reqs[1]);
     MPI_Isend(&TEMP1, N+2, MPI_INT, prev, top_block, MPI_COMM_WORLD, &reqs[2]);
-    MPI_Isend(&TEMP1, N+2, MPI_INT, next, bottom_block, MPI_COMM_WORLD, &reqs[3]);
+    MPI_Isend(&TEMP1[recvcount*(N+2)], N+2, MPI_INT, next, bottom_block, MPI_COMM_WORLD, &reqs[3]);
     MPI_Waitall(4, reqs, stats); 
     compute(TEMP1,TEMP2,(N+2)/numtasks ,N+2);
     compute(TEMP2,TEMP1,(N+2)/numtasks ,N+2);
-       
+    MPI_Irecv(&TEMP1, N+2, MPI_INT, prev, top_block, MPI_COMM_WORLD, &reqs[0]);
+    MPI_Irecv(&TEMP1[recvcount*(N+2)], N+2, MPI_INT, next, bottom_block, MPI_COMM_WORLD, &reqs[1]);
+    MPI_Isend(&TEMP1, N+2, MPI_INT, prev, top_block, MPI_COMM_WORLD, &reqs[2]);
+    MPI_Isend(&TEMP1[recvcount*(N+2)], N+2, MPI_INT, next, bottom_block, MPI_COMM_WORLD, &reqs[3]);
+    MPI_Waitall(4, reqs, stats); 
 MPI_Finalize();
 
 }
