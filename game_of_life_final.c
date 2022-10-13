@@ -118,6 +118,8 @@ int main(int argc, char *argv[])
     MPI_Waitall(4, reqs, stats); 
     compute(TEMP2,TEMP1,(N+2)/numtasks ,N+2);
    }
+	#gather
+	#check
     MPI_Finalize();
 
 }
